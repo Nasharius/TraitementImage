@@ -1,0 +1,350 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/parallax/Layer_0001_8.png" type="Texture" id=2]
+[ext_resource path="res://target.gd" type="Script" id=3]
+[ext_resource path="res://assets/sprites/characters/knight/knight iso char_idle_0.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/characters/knight/knight iso char_idle_1.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/characters/knight/knight iso char_idle_2.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/characters/knight/knight iso char_idle_3.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/parallax/Layer_0010_1.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/parallax/Layer_0009_2.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/parallax/Layer_0008_3.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/parallax/Layer_0007_Lights.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/parallax/Layer_0006_4.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/parallax/Layer_0005_5.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/parallax/Layer_0004_Lights.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/parallax/Layer_0003_6.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/parallax/Layer_0002_7.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/parallax/Layer_0000_9.png" type="Texture" id=17]
+[ext_resource path="res://map.tmx" type="PackedScene" id=18]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 149.876, 6.5477 )
+
+[sub_resource type="SpriteFrames" id=4]
+
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=5]
+
+custom_solver_bias = 0.0
+radius = 20.0
+height = 40.0
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 210 )
+
+[node name="World" type="Node" index="0"]
+
+[node name="Player" parent="." index="0" instance=ExtResource( 1 )]
+
+position = Vector2( 238.808, 711.623 )
+scale = Vector2( 1.18484, 1.14236 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( -3.21223, 476.522 )
+scale = Vector2( 3.44663, 1.96381 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D" index="0"]
+
+position = Vector2( 150.403, 34.6312 )
+scale = Vector2( 0.323153, 0.288434 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+
+position = Vector2( 149.943, 139.198 )
+scale = Vector2( 1, 1.35256 )
+shape = SubResource( 1 )
+
+[node name="target" type="StaticBody2D" parent="." index="2" groups=[
+"detectable",
+]]
+
+position = Vector2( 580, 690 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="target" index="0"]
+
+frames = SubResource( 4 )
+animation = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="target" index="1"]
+
+position = Vector2( 5.96046e-006, 0 )
+scale = Vector2( 0.869565, 1 )
+shape = SubResource( 5 )
+
+[node name="Parallax1" type="ParallaxBackground" parent="." index="3"]
+
+editor/display_folded = true
+layer = -1
+offset = Vector2( 800, -305 )
+rotation = 0.0
+scale = Vector2( 1.5, 1.5 )
+transform = Transform2D( 1.5, 0, 0, 1.5, 800, -305 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax1" index="0"]
+
+motion_scale = Vector2( 0.1, 0.1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1024, 768 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Parallax1/ParallaxLayer" index="0"]
+
+texture = ExtResource( 8 )
+centered = false
+offset = Vector2( 0, -216 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 768 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Parallax1" index="1"]
+
+motion_scale = Vector2( 0.15, 0.15 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1024, 768 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Parallax1/ParallaxLayer2" index="0"]
+
+position = Vector2( 0, -1.36038 )
+texture = ExtResource( 9 )
+centered = false
+offset = Vector2( 0, -300 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 768 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Parallax1" index="2"]
+
+motion_scale = Vector2( 0.2, 0.2 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1024, 768 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Parallax1/ParallaxLayer3" index="0"]
+
+texture = ExtResource( 10 )
+centered = false
+offset = Vector2( 0, -300 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 768 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Parallax1" index="3"]
+
+motion_scale = Vector2( 0.2, 0.2 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1024, 768 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Parallax1/ParallaxLayer4" index="0"]
+
+texture = ExtResource( 11 )
+centered = false
+offset = Vector2( 0, -250 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 768 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="Parallax1" index="4"]
+
+motion_scale = Vector2( 0.2, 0.2 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1024, 768 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Parallax1/ParallaxLayer5" index="0"]
+
+texture = ExtResource( 12 )
+centered = false
+offset = Vector2( 0, -300 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 768 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="Parallax1" index="5"]
+
+motion_scale = Vector2( 0.25, 0.25 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1024, 768 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Parallax1/ParallaxLayer6" index="0"]
+
+texture = ExtResource( 13 )
+centered = false
+offset = Vector2( 0, -280 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 768 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="Parallax1" index="6"]
+
+motion_scale = Vector2( 0.25, 0.25 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1024, 768 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Parallax1/ParallaxLayer7" index="0"]
+
+texture = ExtResource( 14 )
+centered = false
+offset = Vector2( 0, -250 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 768 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="ParallaxLayer8" type="ParallaxLayer" parent="Parallax1" index="7"]
+
+motion_scale = Vector2( 0.3, 0.3 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1024, 768 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Parallax1/ParallaxLayer8" index="0"]
+
+texture = ExtResource( 15 )
+centered = false
+offset = Vector2( 0, -250 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 768 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="ParallaxLayer9" type="ParallaxLayer" parent="Parallax1" index="8"]
+
+motion_scale = Vector2( 0.3, 0.3 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1024, 768 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Parallax1/ParallaxLayer9" index="0"]
+
+texture = ExtResource( 16 )
+centered = false
+offset = Vector2( 0, -250 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 768 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="ParallaxLayer10" type="ParallaxLayer" parent="Parallax1" index="9"]
+
+motion_scale = Vector2( 1, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1024, 768 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="Parallax1/ParallaxLayer10" index="0"]
+
+texture = ExtResource( 17 )
+centered = false
+offset = Vector2( 0, -270 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 768 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="4"]
+
+position = Vector2( 410, 490 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D2" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 20, 30, 110, 30, 100, 50, 30, 50 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" index="1"]
+
+position = Vector2( -3, -2 )
+build_mode = 0
+polygon = PoolVector2Array( 180, 100, 213, 62, 233, 62, 243, 62, 333, 165, 373, 162, 373, 235, 210, 230, 210, 130, 20, 130, 20, 120, 20, 110, 20, 100 )
+
+[node name="map" parent="StaticBody2D2" index="2" instance=ExtResource( 18 )]
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="5"]
+
+position = Vector2( 1040, 530 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" index="0"]
+
+shape = SubResource( 3 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." index="6"]
+
+position = Vector2( -10, 530 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" index="0"]
+
+shape = SubResource( 3 )
+
+

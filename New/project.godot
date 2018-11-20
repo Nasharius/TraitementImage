@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=3
+
+[application]
+
+config/name="Yknow"
+run/main_scene="res://World.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/height=768
+window/size/test_width=1024
+window/size/test_height=800
+window/stretch/shrink="1"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "vnen.tiled_importer" )
+
+[rendering]
+
+quality/2d/use_pixel_snap=true
+environment/default_environment="res://default_env.tres"
+
+[tiled_importer]
+
+enable_json_format=true
