@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Knight.tscn" type="PackedScene" id=2]
+[ext_resource path="res://WorldComplete.tscn" type="PackedScene" id=3]
+[ext_resource path="res://map.tmx" type="PackedScene" id=4]
+
+[node name="World" type="Node"]
+
+[node name="Player" parent="." index="0" instance=ExtResource( 1 )]
+
+position = Vector2( 100, 160 )
+
+[node name="Knight" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 240, 120 )
+scale = Vector2( 0.34375, 0.34375 )
+_sections_unfolded = [ "Transform", "collision" ]
+
+[node name="WorldComplete" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 375, 222 )
+scale = Vector2( 0.34375, 0.34375 )
+next_world = "res://World2.tscn"
+
+[node name="map" parent="." index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 20, 70 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="map" index="1"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 20, 100, 180, 100, 210, 70, 240, 70, 340, 170, 360, 170, 360, 220, 220, 220, 220, 130, 190, 130, 20, 130 )
+
+
